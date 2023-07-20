@@ -5,6 +5,6 @@
 namespace Patcher {
 	bool ReplaceBytes(const char* filename, const char* searchPattern, const char* replaceBytes);
 	bool PatchClient();
-	bool PatchServer();
+	//bool PatchServer();
 	void CleanPatchFiles();
 }

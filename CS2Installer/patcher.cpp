@@ -6,8 +6,8 @@
 
 bool Patcher::PatchClient() {
     const char* steamCheckBytes[2] = { "\x75\x70\xFF\x15", "\xEB\x70\xFF\x15" };
-    const char* versionCheckBytes[4] = { "\x6C\x69\x6D\x69\x74\x65\x64\x62\x65\x74\x61", "\x66\x75\x6C\x6C\x76\x65\x72\x73\x69\x6F\x6E", /* there are two checks */ "\x6C\x69\x6D\x69\x74\x65\x64\x62\x65\x74\x61", "\x66\x75\x6C\x6C\x76\x65\x72\x73\x69\x6F\x6E"};
-    const char* voiceScaleBytes[2] = { "\x80\x3F\x0F\x11\x44\x24\x60\xE8\xEB\x32", "\xA0\x40\x0F\x11\x44\x24\x60\xE8\xEB\x32" }; /* valve keeps patching this signature ;< need a better signature */
+    //const char* versionCheckBytes[4] = { "\x6C\x69\x6D\x69\x74\x65\x64\x62\x65\x74\x61", "\x66\x75\x6C\x6C\x76\x65\x72\x73\x69\x6F\x6E", /* there are two checks */ "\x6C\x69\x6D\x69\x74\x65\x64\x62\x65\x74\x61", "\x66\x75\x6C\x6C\x76\x65\x72\x73\x69\x6F\x6E"};
+    /*const char* voiceScaleBytes[2] = { "\x80\x3F\x0F\x11\x44\x24\x60\xE8\xEB\x32", "\xA0\x40\x0F\x11\x44\x24\x60\xE8\xEB\x32" };  valve keeps patching this signature ;< need a better signature */
 
     if (!ReplaceBytes("game/csgo/bin/win64/client.dll", steamCheckBytes[0], steamCheckBytes[1])) {
         puts("failed to patch steam check");
@@ -15,22 +15,22 @@ bool Patcher::PatchClient() {
     }
 
     //printf("patched steam check: %s -> %s\n", steamCheckBytes[0], steamCheckBytes[1]);
-    if (!ReplaceBytes("game/csgo/bin/win64/client.dll", versionCheckBytes[0], versionCheckBytes[1]) || !ReplaceBytes("game/csgo/bin/win64/client.dll", versionCheckBytes[2], versionCheckBytes[3])) {
+    /*if (!ReplaceBytes("game/csgo/bin/win64/client.dll", versionCheckBytes[0], versionCheckBytes[1]) || !ReplaceBytes("game/csgo/bin/win64/client.dll", versionCheckBytes[2], versionCheckBytes[3])) {
         puts("failed to patch version check");
         return false;
-    }
+    }*/
 
     //printf("patched version check: %s -> %s\n", versionCheckBytes[0], versionCheckBytes[1]);
-    if (!ReplaceBytes("game/csgo/bin/win64/client.dll", voiceScaleBytes[0], voiceScaleBytes[1])) {
+    /*if (!ReplaceBytes("game/csgo/bin/win64/client.dll", voiceScaleBytes[0], voiceScaleBytes[1])) {
         puts("failed to patch voice_scale");
         return false;
-    }
+    }*/
 
     //printf("patched voice_scale: %s -> %s\n", voiceScaleBytes[0], voiceScaleBytes[1]);
     return true;
 }
 
-bool Patcher::PatchServer() {
+/*bool Patcher::PatchServer() {
     const char* clampCheckBytes[2] = { "\x76\x59\xF2\x0F\x10\x4F\x3C", "\xEB\x59\xF2\x0F\x10\x4F\x3C" };
 
     if (!ReplaceBytes("game/csgo/bin/win64/server.dll", clampCheckBytes[0], clampCheckBytes[1])) {
@@ -40,7 +40,7 @@ bool Patcher::PatchServer() {
 
     //printf("patched movement clamp: %s -> %s\n", clampCheckBytes[0], clampCheckBytes[1]);
     return true;
-}
+}*/
 
 void RemoveExistingPatchFiles(const char* path) {
     std::filesystem::path filePath = path;

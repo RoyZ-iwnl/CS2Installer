@@ -34,24 +34,24 @@ int main(int argc, char* argv[]) {
 	puts("Finished Download!.");
 	puts("Starting Patches...");
 	Patcher::PatchClient();
-	puts("Do you want to install the Movement Patch?(This is recommended for bhop/surf servers for better movement)");
-	puts("Press 'Y' for 'Yes' or 'N' for 'No' on your keyboard");
-	std::cin >> wantsMovementPatch;
+	//puts("Do you want to install the Movement Patch?(This is recommended for bhop/surf servers for better movement)");
+	//puts("Press 'Y' for 'Yes' or 'N' for 'No' on your keyboard");
+	//std::cin >> wantsMovementPatch;
 
-	for (char& c : wantsMovementPatch) { /* make the anwser lowercase */
+	/*for (char& c : wantsMovementPatch) { /* make the anwser lowercase 
 		c = std::tolower(c);
 	}
 
 	if (wantsMovementPatch.find("y") != std::string::npos) {
 		Patcher::PatchServer();
-	}
+	}*/
 
 	puts("Finished Patches!");
-	puts("Starting Client-Mod Patches...");
-	puts("This can take a long time...");
-	Downloader::DownloadMods();
-	puts("Finished Client-Mod Patches!");
-	puts("Cleaning up downloader files...");
+	//puts("Starting Client-Mod Patches...");
+	//puts("This can take a long time...");
+	//Downloader::DownloadMods();
+	//puts("Finished Client-Mod Patches!");
+	//puts("Cleaning up downloader files...");
 	if (!Globals::usesNoManifests) {
 		std::filesystem::remove_all("manifestFiles");
 	}
